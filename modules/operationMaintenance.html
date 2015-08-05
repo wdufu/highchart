@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>运营管理</title>
+</head>
+<body>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="100%" valign="top">
+                <label for="txt_om_search">
+                    时间：</label><input id="txt_om_search" type="text" class="input" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" /><input
+                        type="button" value="查询" />
+            </td>
+        </tr>
+        <tr>
+            <td width="100%" valign="top">
+                <div id="om_containerLine" style="height: 235px">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="100%" valign="top">
+                <div id="om_containerCombo" style="height: 235px; padding-top: 5px;">
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        var om_chart;
+        function om_initLineChart(mainDate, categoriesData, seriesDataArray) {
+            var chartOptions = {
+                chart: {
+                    renderTo: 'om_containerLine',
+                    defaultSeriesType: 'line',
+                    borderWidth: 1,
+                    borderColor: '#C6D8E0',
+                    marginBottom:100
+                },
+                title: {
+                    text: mainDate + '客运量情况'
+                },
+                subtitle: {
+                    text: '备注：（点击邻线换乘显示详细）',
+                    floating: true,
+                    align: 'right',
+                    verticalAlign: 'bottom',
+                    x: 13,
+                    y: 5
+                },
+                xAxis: {
+                    title: {
+                        text: ''
+                    },
+                    categories: categoriesData,
+                    tickmarkPlacement: 'between'
+                },
+                yAxis: [{
+                    min: 0,
+                    title: {
+                        text: '万（人次）'
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value / 10000;
+                        }
+                    }
+                }, {
+                    min: 0,
+                    opposite: true,
+                    title: {
+                        text: '万（人次）',
+                        style: {
+                            color: '#703092'
+                        }
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value / 10000;
+                        },
+                        style: {
+                            color: '#703092'
+                        }
+                    }
+                }],
+                legend: {
+                    enabled: true,
+                    width: 510,
+                    lineHeight: 250,
+                    align: 'left',
+                    floating: true,
+                    itemStyle: {
+                        paddingBottom:8
+		            }
+                },
+                tooltip: {
+                    shared: true,
+                    crosshairs: true,
+                    formatter: function () {
+                        var s = [], totalPoint = this.points;
+                        s.push('<b>');
+                        s.push(totalPoint[0].x);
+                        s.push('</b>');
+                        for (var i = 0, len = totalPoint.length; i < len; i++) {
+                            s.push('<br/>');
+                            s.push(totalPoint[i].series.name);
+                            s.push('：');
+                            s.push(totalPoint[i].y / 10000);
+                            s.push('万');
+                        }
+                        return s.join('');
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: '本日客运量（A+B）',
+                    data: null
+                }, {
+                    name: '本日乘客人次（A）',
+                    data: null
+                }, {
+                    name: '邻线换乘到本线的客运量（B）',
+                    data: null,
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function () {
+                                if ($('#om_openSub1_' + this.x).length == 0)
+                                    $('#om_containerLine').parent('td').append('<a id="om_openSub1_' + this.x + '"></a>');
+                                hs.htmlExpand($('#om_openSub1_' + this.x)[0], {
+                                    headingText: '（' + this.category + '）' + this.series.name,
+                                    width: 400,
+                                    align: 'center',
+                                    outlineType: 'rounded-white',
+                                    wrapperClassName: 'draggable-header',
+                                    objectType: 'iframe',
+                                    src: 'modules/operationMaintenanceSub1.html?index=' + this.x
+                                });
+                            }
+                        }
+                    }
+
+                }, {
+                    name: '本月本日止累计客运量',
+                    data: null,
+                    yAxis: 1
+                }, {
+                    name: '本月本日止日均客运量',
+                    data: null
+                }]
+            };
+            for (var i = 0, len = seriesDataArray.length; i < len; i++)
+                chartOptions.series[i].data = seriesDataArray[i];
+            om_chart = new Highcharts.Chart(chartOptions);
+        }
+
+        function om_initComboChart(mainDate, categoriesData, seriesDataArray) {
+            var chartOptions = {
+                chart: {
+                    renderTo: 'om_containerCombo',
+                    defaultSeriesType: 'column',
+                    borderWidth: 1,
+                    borderColor: '#C6D8E0'
+                },
+                title: {
+                    text: mainDate + '电能消耗情况'
+                },
+                subtitle: {
+                    text: '备注：（点击总电耗显示详细）',
+                    floating: true,
+                    align: 'right',
+                    verticalAlign: 'bottom',
+                    x: 13,
+                    y: 5
+                },
+                xAxis: {
+                    title: {
+                        text: ''
+                    },
+                    categories: categoriesData,
+                    tickmarkPlacement: 'between'
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '万（千瓦时）'
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value / 10000;
+                        }
+                    }
+                },
+                legend: {
+                    enabled: true
+                },
+                tooltip: {
+                    formatter: function () {
+                        var seriesName = this.series.name;
+                        return '<b>' + this.x + '</b><br/>' + seriesName + '：</b>' + this.y / 10000 + '万<br/>'
+                            + (seriesName != '总电耗' ? seriesName + '/总电耗：' + chartOptions.series[{
+                                牵引电耗: 0,
+                                动力及照明: 1,
+                                线损及其它: 2
+                            }[seriesName]].data[this.point.x].percent + '%（占比）<br/>' + '总和：' + this.point.stackTotal / 10000 + '万' : '');
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0,
+                        stacking: 'normal'
+                    }
+                },
+                series: [{
+                    name: '牵引电耗',
+                    data: null,
+                    stack: 'subPower'
+                }, {
+                    name: '动力及照明',
+                    data: null,
+                    stack: 'subPower'
+                }, {
+                    name: '线损及其它',
+                    data: null,
+                    stack: 'subPower'
+                }, {
+                    name: '总电耗',
+                    data: null,
+                    type: 'line',
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function () {
+                            return this.y / 10000;
+                        }
+                    },
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function () {
+                                if ($('#om_openSub2_' + this.x).length == 0)
+                                    $('#om_containerCombo').parent('td').append('<a id="om_openSub2_' + this.x + '"></a>');
+                                hs.htmlExpand($('#om_openSub2_' + this.x)[0], {
+                                    headingText: this.category + this.series.name,
+                                    width: 400,
+                                    align: 'center',
+                                    outlineType: 'rounded-white',
+                                    wrapperClassName: 'draggable-header',
+                                    objectType: 'iframe',
+                                    src: 'modules/operationMaintenanceSub2.html?index=' + this.x
+                                });
+                            }
+                        }
+                    }
+                }]
+            };
+            for (var i = 0, len = seriesDataArray.length; i < len; i++)
+                chartOptions.series[i].data = seriesDataArray[i];
+            om_chart = new Highcharts.Chart(chartOptions);
+        }
+
+        $(function () {
+            var testData = [
+                {
+                    info: {
+                        mainDate: '2011年06月02日'
+                    },
+                    line: {
+                        categoriesData: ['一号线', '二号线', '三号线', '三号线北延线', '四号线', '五号线', '八号线', 'APM', '广佛线'],
+                        data: [
+                            [
+                                2300000, 2100000, 2200000, 2500000, 2600000,
+                                2700000, 1800000, 1100000, 2500000
+                            ],
+                            [
+                                800000, 1200000, 1400000, 1000000, 1200000,
+                                1800000, 600000, 1100000, 1200000
+                            ],
+                            [
+                                1500000, 900000, 800000, 1500000, 1400000,
+                                900000, 1200000, null, 1300000
+                            ],
+                            [
+                                10000000, 12000000, 14000000, 13000000, 15000000,
+                                11000000, 16000000, 12000000, 14000000
+                            ],
+                            [
+                                1800000, 2200000, 1800000, 2400000, 2100000,
+                                1600000, 1900000, 1200000, 1500000
+                            ]
+                        ]
+                    },
+                    combo: {
+                        categoriesData: ['一号线', '二号线', '三号线', '三号线北延线', '四号线', '五号线', '八号线', 'APM', '广佛线'],
+                        data: [
+                            [
+                                { y: 4000000, percent: 40 },
+                                { y: 4000000, percent: 40 },
+                                { y: 4000000, percent: 40 },
+                                { y: 4000000, percent: 40 },
+                                { y: 4000000, percent: 40 },
+                                { y: 4000000, percent: 40 },
+                                { y: 4000000, percent: 40 },
+                                { y: 4000000, percent: 40 },
+                                { y: 4000000, percent: 40 }
+                            ],
+                            [
+                                { y: 3000000, percent: 30 },
+                                { y: 3000000, percent: 30 },
+                                { y: 3000000, percent: 30 },
+                                { y: 3000000, percent: 30 },
+                                { y: 3000000, percent: 30 },
+                                { y: 3000000, percent: 30 },
+                                { y: 3000000, percent: 30 },
+                                { y: 3000000, percent: 30 },
+                                { y: 3000000, percent: 30 }
+                            ],
+                            [
+                                { y: 2000000, percent: 20 },
+                                { y: 2000000, percent: 20 },
+                                { y: 2000000, percent: 20 },
+                                { y: 2000000, percent: 20 },
+                                { y: 2000000, percent: 20 },
+                                { y: 2000000, percent: 20 },
+                                { y: 2000000, percent: 20 },
+                                { y: 2000000, percent: 20 },
+                                { y: 2000000, percent: 20 }
+                            ],
+                            [
+                                10000000, 10000000, 10000000, 10000000, 10000000,
+                                10000000, 10000000, 10000000, 10000000
+                            ]
+                        ]
+                    }
+                }
+            ];
+
+            testData[0].info.mainDate = new Date().toLocaleDateString();
+            $('#txt_om_search').val(testData[0].info.mainDate.replace('年', '-').replace('月', '-').replace('日', ''));
+
+            var lineObj = testData[0].line;
+            om_initLineChart(testData[0].info.mainDate, lineObj.categoriesData, lineObj.data);
+            var comboObj = testData[0].combo;
+            om_initComboChart(testData[0].info.mainDate, comboObj.categoriesData, comboObj.data);
+        });
+    </script>
+</body>
+</html>

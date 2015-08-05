@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>运营管理邻线换乘子项</title>
+    <script type="text/javascript" src="../Scripts/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../Scripts/queryString.js"></script>
+    <script type="text/javascript" src="../Scripts/Highcharts/highcharts-2.1.4.min.js"></script>
+</head>
+<body>
+    <div id="omSub1_containerColumn" style="height: 400px;">
+    </div>
+    <script type="text/javascript">
+        var omSub1_chart;
+        function omSub1_initColumnChart(seriesData) {
+            var chartOptions = {
+                chart: {
+                    renderTo: 'omSub1_containerColumn',
+                    defaultSeriesType: 'column',
+                    borderWidth: 1,
+                    borderColor: '#C6D8E0'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    title: {
+                        text: '万（人次）'
+                    },
+                    categories: ['本日换乘客运量情况'],
+                    tickmarkPlacement: 'between'
+                },
+                yAxis: {
+                    title: {
+                        text: '百分比'
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.series.name + '</b><br/>' + '换乘客运量：' + this.y / 10000 + 
+                            '万<br/>' + this.x + '：' + this.point.stackTotal / 10000 + '万<br/>百分比：'+
+                            Highcharts.numberFormat(this.percentage,2,'.') + '%';
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'percent',
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function () {
+                                return this.y / 10000;
+                            },
+                            color: '#FFFFFF',
+                            y:15
+                        }
+                    }
+                },
+                series: seriesData
+            };
+
+            omSub1_chart = new Highcharts.Chart(chartOptions);
+        }
+
+        $(function () {
+            var testData = [
+                [
+                    { name: '二号线', data: [200000] },
+                    { name: '三号线', data: [300000] },
+                    { name: '三号线北延线', data: [300000] },
+                    { name: '四号线', data: [200000] },
+                    { name: '五号线', data: [100000] },
+                    { name: '八号线', data: [200000] },
+                    { name: '广佛线', data: [200000] }
+                ],
+                [
+                    { name: '一号线', data: [140000] },
+                    { name: '三号线', data: [100000] },
+                    { name: '三号线北延线', data: [100000] },
+                    { name: '四号线', data: [150000] },
+                    { name: '五号线', data: [150000] },
+                    { name: '八号线', data: [100000] },
+                    { name: '广佛线', data: [160000] }
+                ],
+                [
+                    { name: '一号线', data: [160000] },
+                    { name: '二号线', data: [100000] },
+                    { name: '三号线北延线', data: [150000] },
+                    { name: '四号线', data: [50000] },
+                    { name: '五号线', data: [100000] },
+                    { name: '八号线', data: [100000] },
+                    { name: '广佛线', data: [140000] }
+                ],
+                [
+                    { name: '一号线', data: [300000] },
+                    { name: '二号线', data: [200000] },
+                    { name: '三号线', data: [300000] },
+                    { name: '四号线', data: [200000] },
+                    { name: '五号线', data: [100000] },
+                    { name: '八号线', data: [200000] },
+                    { name: '广佛线', data: [200000] }
+                ],
+                [
+                    { name: '一号线', data: [300000] },
+                    { name: '二号线', data: [200000] },
+                    { name: '三号线', data: [300000] },
+                    { name: '三号线北延线', data: [200000] },
+                    { name: '五号线', data: [100000] },
+                    { name: '八号线', data: [200000] },
+                    { name: '广佛线', data: [100000] }
+                ],
+                [
+                    { name: '一号线', data: [140000] },
+                    { name: '二号线', data: [150000] },
+                    { name: '三号线', data: [100000] },
+                    { name: '三号线北延线', data: [100000] },
+                    { name: '四号线', data: [150000] },
+                    { name: '八号线', data: [100000] },
+                    { name: '广佛线', data: [160000] }
+                ],
+                [
+                    { name: '一号线', data: [240000] },
+                    { name: '二号线', data: [150000] },
+                    { name: '三号线', data: [200000] },
+                    { name: '三号线北延线', data: [100000] },
+                    { name: '四号线', data: [150000] },
+                    { name: '五号线', data: [200000] },
+                    { name: '广佛线', data: [160000] }
+                ],
+                [
+                ],
+                [
+                    { name: '一号线', data: [240000] },
+                    { name: '二号线', data: [150000] },
+                    { name: '三号线', data: [240000] },
+                    { name: '三号线北延线', data: [160000] },
+                    { name: '四号线', data: [150000] },
+                    { name: '五号线', data: [200000] },
+                    { name: '八号线', data: [160000] }
+                ]
+            ];
+
+            queryString.initial();
+            var index = parseInt(queryString.getValue("index"));
+            omSub1_initColumnChart(testData[index]);
+        });
+    </script>
+</body>
+</html>

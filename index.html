@@ -1,0 +1,838 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <title>领导工作台首页</title>
+    <link href="Themes/Default/Style.css" rel="stylesheet" type="text/css" />
+    <link href="Themes/Default/Highslide/highslide.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="Scripts/DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript" src="Scripts/Highcharts/highcharts-2.1.4.min.js"></script>
+    <script type="text/javascript" src="Scripts/Highslide/highslide-full.min.js"></script>
+    <script type="text/javascript" src="Scripts/Highslide/highslide.config.js"></script>
+    <!--<script type="text/javascript" src="Scripts/Highcharts/themes/grid.js"></script>-->
+</head>
+<body>
+    <!--header start-->
+    <div class="header">
+        <div class="date">
+            2011年5月23日 星期一
+        </div>
+        <div class="wel_info">
+            您好：总公司领导<span style="display: none">&nbsp;[<a href="#">信息技术中心<small>&nbsp;</small></a>]</span>，欢迎回来！</div>
+        <div class="new_help">
+            <ul>
+                <li><a href="#">门户首页</a></li>
+                <li><a href="#">我要帮助</a></li>
+                <li><a href="#">我的操作</a></li>
+                <li><a href="#" onclick="if(confirm('确定要注销用户？'))location.href='login.html';">注销</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--header end-->
+    <!--logo_nav start-->
+    <div class="logo_nav">
+        <div>
+            <div class="weather">
+                <img src="images/weather_03.gif" />
+                <ul class="today">
+                    <li><strong>广州</strong>[<a href="#">切换城市<small>&nbsp;</small></a>]</li>
+                    <li><strong>阵雨转中雨</strong></li>
+                    <li><strong>23℃-26℃</strong></li>
+                </ul>
+                <ul class="tomorrow">
+                    <li>明天</li>
+                    <li>
+                        <img src="images/weather_06.gif" /></li>
+                    <li>24℃-27℃</li>
+                </ul>
+            </div>
+            <div class="logo">
+                <img src="images/logo.gif" /></div>
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="#" class="current"><b></b><span>我的工作台</span></a></li>
+                <li><a href="#"><b></b><span>OA系统</span></a></li>
+                <li><a href="#"><b></b><span>合同管理</span></a></li>
+                <li><a href="#"><b></b><span>立项管理</span></a></li>
+            </ul>
+            <div class="skin">
+                <table width="55" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td>
+                            <a href="#" class="skin_left_btn"></a>
+                        </td>
+                        <td>
+                            <a href="#" class="btn_blue"></a>
+                        </td>
+                        <td>
+                            <a href="#" class="btn_red"></a>
+                        </td>
+                        <td>
+                            <a href="#" class="btn_green"></a>
+                        </td>
+                        <td>
+                            <a href="#" class="skin_right_btn"></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--logo_nav end-->
+    <!--主体内容 start-->
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top: 5px">
+        <tr>
+            <td valign="top">
+                <div class="webpart2">
+                    <div class="wp_top wp_top1">
+                        <h1 style="padding: 0; height: 30px; overflow: hidden;">
+                            <a href="javascript:;">更多&gt;&gt;</a><a href="javascript:;"><img src="images/refresh.gif"
+                                align="absmiddle" />&nbsp;刷新&nbsp;|</a>
+                            <ul class="tablist_1">
+                                <li><a href="javascript:;" onmouseover="SelectMenu4(this,'tab4_1');" class="tabDef4"
+                                    id="tabDef4"><span>待办任务</span></a> </li>
+                                <li><a href="#"><span>资金管理（8）</span></a></li>
+                            </ul>
+                        </h1>
+                    </div>
+                    <div class="wp_main">
+                        <div id="tab4_1">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                                <tr>
+                                    <th width="4%" align="center" bgcolor="#F5F8FF">
+                                        &nbsp;
+                                    </th>
+                                    <th width="10%" align="center" bgcolor="#F5F8FF">
+                                        类型
+                                    </th>
+                                    <th width="8%" align="center" bgcolor="#F5F8FF">
+                                        缓急
+                                    </th>
+                                    <th width="35%" align="center" bgcolor="#F5F8FF">
+                                        标题
+                                    </th>
+                                    <th width="15%" align="center" bgcolor="#F5F8FF">
+                                        发起部门
+                                    </th>
+                                    <th width="15%" align="center" bgcolor="#F5F8FF">
+                                        处理环节
+                                    </th>
+                                    <th width="*" align="center" bgcolor="#F5F8FF">
+                                        发送时间<img src="images/index_72.gif" />
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        OA待办
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="关于违规使用工作证件情况的通报">
+                                        <a href="modules/oa.html" target="_blank">关于违规使用工作证件情况的通报</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草签报">
+                                        起草签报
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;<a href="javascript:alert('设置成功');" title="设置监控"><img src="images/edit2.gif"
+                                            width="13" height="13" align="absmiddle" onclick="this.style.display='none';"
+                                            style="vertical-align: top" /></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        OA待办
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="广州地铁信息管理部招领领导小组会议纪要">
+                                        <a href="modules/oa.html" target="_blank">广州地铁信息管理部招领领导小组会议纪要</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人确认">
+                                        起草人确..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;<a href="javascript:alert('设置成功');" title="设置监控"><img src="images/edit2.gif"
+                                            width="13" height="13" align="absmiddle" onclick="this.style.display='none';"
+                                            style="vertical-align: top" /></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        OA待办
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="关于2011年春节放假的通知">
+                                        <a href="modules/oa.html" target="_blank">关于2011年春节放假的通知</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="部门内人员处理">
+                                        部门内人..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;<a href="javascript:alert('设置成功');" title="设置监控"><img src="images/edit2.gif"
+                                            width="13" height="13" align="absmiddle" onclick="this.style.display='none';"
+                                            style="vertical-align: top" /></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        OA待办
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="测试授权是部门领导变换">
+                                        <a href="modules/oa.html" target="_blank">测试授权是部门领导变换</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人修改">
+                                        起草人修..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        OA待办
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="测试Portal待办">
+                                        <a href="modules/oa.html" target="_blank">测试Portal待办</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人归档">
+                                        起草人归..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        OA待办
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="业务人员出差管理规范">
+                                        <a href="modules/oa.html" target="_blank">业务人员出差管理规范</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人确认">
+                                        起草人确..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;<a href="javascript:alert('设置成功');" title="设置监控"><img src="images/edit2.gif"
+                                            width="13" height="13" align="absmiddle" onclick="this.style.display='none';"
+                                            style="vertical-align: top" /></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        OA待办
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="44[2011-05-09 9:25]">
+                                        <a href="modules/oa.html" target="_blank">44[2011-05-09 9:25]</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草签报">
+                                        起草签报
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        OA待办
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="测试[2011-05-08 14:30]">
+                                        <a href="modules/oa.html" target="_blank">测试[2011-05-08 14:30]</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人确认">
+                                        起草人确..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;<a href="javascript:alert('设置成功');" title="设置监控"><img src="images/edit2.gif"
+                                            width="13" height="13" align="absmiddle" onclick="this.style.display='none';"
+                                            style="vertical-align: top" /></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        合同待办
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="测试[2011-05-09 23:50]">
+                                        <a href="modules/oa.html" target="_blank">测试[2011-05-09 23:50]</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草签报">
+                                        起草签报
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        合同待办
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="广州地铁内部会议预订">
+                                        <a href="modules/oa.html" target="_blank">广州地铁内部会议预订</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人确认">
+                                        起草人确..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;<a href="javascript:alert('设置成功');" title="设置监控"><img src="images/edit2.gif"
+                                            width="13" height="13" align="absmiddle" onclick="this.style.display='none';"
+                                            style="vertical-align: top" /></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6" style="font-size: 13px; display: none;">
+                                        共&nbsp;35&nbsp;条，每页显示&nbsp;10&nbsp;条，分&nbsp;4&nbsp;页显示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        现在正在查看第<span style="color: #F00;">1</span> 2 3 ...页
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="tab4_2" style="display: none;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                                <tr>
+                                    <th width="4%" align="center" bgcolor="#F5F8FF">
+                                        &nbsp;
+                                    </th>
+                                    <th width="10%" align="center" bgcolor="#F5F8FF">
+                                        类型
+                                    </th>
+                                    <th width="8%" align="center" bgcolor="#F5F8FF">
+                                        缓急
+                                    </th>
+                                    <th width="35%" align="center" bgcolor="#F5F8FF">
+                                        标题
+                                    </th>
+                                    <th width="15%" align="center" bgcolor="#F5F8FF">
+                                        发起部门
+                                    </th>
+                                    <th width="15%" align="center" bgcolor="#F5F8FF">
+                                        处理环节
+                                    </th>
+                                    <th width="*" align="center" bgcolor="#F5F8FF">
+                                        发送时间<img src="images/index_72.gif" />
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        **资金
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="0508测试收回同步1">
+                                        <a href="#">0508测试收回同步1</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人修改">
+                                        起草人修..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        **资金
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="0508测试收回同步2">
+                                        <a href="#">0508测试收回同步2</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人修改">
+                                        起草人修..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        **资金
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="0508测试收回同步3">
+                                        <a href="#">0508测试收回同步3</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人修改">
+                                        起草人修..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        **资金
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="0508测试收回同步4">
+                                        <a href="#">0508测试收回同步4</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人修改">
+                                        起草人修..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        **资金
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="0508测试收回同步5">
+                                        <a href="#">0508测试收回同步5</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人修改">
+                                        起草人修..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        **资金
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="0508测试收回同步6">
+                                        <a href="#">0508测试收回同步6</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人修改">
+                                        起草人修..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        **资金
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="0508测试收回同步7">
+                                        <a href="#">0508测试收回同步7</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人修改">
+                                        起草人修..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        **资金
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="0508测试收回同步8">
+                                        <a href="#">0508测试收回同步8</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人修改">
+                                        起草人修..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        **资金
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="0508测试收回同步9">
+                                        <a href="#">0508测试收回同步9</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人修改">
+                                        起草人修..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="images/index_76.gif" />
+                                    </td>
+                                    <td>
+                                        **资金
+                                    </td>
+                                    <td>
+                                        一般
+                                    </td>
+                                    <td title="0508测试收回同步10">
+                                        <a href="#">0508测试收回同步10</a>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td title="起草人修改">
+                                        起草人修..
+                                    </td>
+                                    <td>
+                                        2011-05-09&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6" style="font-size: 13px; display: none">
+                                        共&nbsp;25&nbsp;条，每页显示&nbsp;6&nbsp;条，分&nbsp;5&nbsp;页显示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        现在正在查看第<span style="color: #F00;">1</span> 2 3 ...页
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="wp_foot">
+                    </div>
+                </div>
+                <div class="webpart2">
+                    <div class="wp_top">
+                        <h1 style="padding: 0; height: 30px; overflow: hidden;">
+                            <a href="javascript:;" style="display: none">更多&gt;&gt;</a>
+                            <ul class="tablist_1">
+                                <li><a href="javascript:;" onmouseover="SelectMenu5(this,'tab5_1');" class="tabDef5"
+                                    id="tabDef5"><span>工程建设</span></a> </li>
+                                <li><a href="javascript:;" onmouseover="SelectMenu5(this,'tab5_2');"><span>运营管理</span></a></li>
+                                <li><a href="javascript:;" onmouseover="SelectMenu5(this,'tab5_3');"><span>财务管理</span></a></li>
+                                <li><a href="javascript:;" onmouseover="SelectMenu5(this,'tab5_4');"><span>人力资源</span></a></li>
+                            </ul>
+                        </h1>
+                    </div>
+                    <div class="wp_main">
+                        <div id="tab5_1" style="height: 500px;">
+                        </div>
+                        <div id="tab5_2" style="height: 500px; display: none;">
+                        </div>
+                        <div id="tab5_3" style="height: 500px; display: none;">
+                        </div>
+                        <div id="tab5_4" style="height: 500px; display: none;">
+                        </div>
+                    </div>
+                    <div class="wp_foot">
+                    </div>
+                </div>
+            </td>
+            <td width="10" valign="top">
+                &nbsp;
+            </td>
+            <td width="220" valign="top">
+                <div style="margin-bottom: 10px;">
+                    <img src="images/bikpipic.png" alt="" /></div>
+                <div style="margin-bottom: 10px;">
+                    <img src="images/bipic1.png" alt="" /></div>
+                <div class="webpart2">
+                    <div class="wp_top">
+                        <h1>
+                            <a href="javascript:;" target="_blank">更多&gt;&gt;</a> <span>媒体新闻</span>
+                        </h1>
+                    </div>
+                    <div class="wp_main">
+                        <ul class="list3 list4">
+                            <li><a href="javascript:;">[新浪网]三级残疾人也可优惠..</a></li>
+                            <li><a href="javascript:;">[腾讯网]广州地铁乘客出站..</a></li>
+                            <li><a href="javascript:;">[南海网]广州地铁4号线或考..</a></li>
+                            <li><a href="javascript:;">[新浪网]广州地铁海心沙站直..</a></li>
+                        </ul>
+                    </div>
+                    <div class="wp_foot">
+                    </div>
+                </div>
+                <div class="webpart">
+                    <div class="wp_top">
+                        <div class="title">
+                            应用系统</div>
+                        <h1>
+                        </h1>
+                    </div>
+                    <div class="wp_main">
+                        <div>
+                            <table width="96%" border="0" align="center" cellpadding="0" cellspacing="0" class="tools">
+                                <tr>
+                                    <td title="OA系统">
+                                        <a href="#">
+                                            <img src="images/tools1.gif" alt="" /></a><span><a href="#">OA系统</a></span>
+                                    </td>
+                                    <td title="合同管理">
+                                        <a href="#">
+                                            <img src="images/tools2.gif" alt="" /></a><span><a href="#">合同管理</a></span>
+                                    </td>
+                                    <td title="数据中心">
+                                        <a href="#">
+                                            <img src="images/tools3.gif" alt="" /></a><span><a href="#">数据中心</a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td title="资金系统">
+                                        <a href="#">
+                                            <img src="images/tools4.gif" alt="" /></a><span><a href="#">资金系统</a></span>
+                                    </td>
+                                    <td title="报表中心">
+                                        <a href="#">
+                                            <img src="images/tools5.gif" alt="" /></a><span><a href="#">报表中心</a></span>
+                                    </td>
+                                    <td title="BBS">
+                                        <a href="#">
+                                            <img src="images/tools6.gif" alt="" /></a><span><a href="#">BBS</a></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="hr10">
+                        </div>
+                    </div>
+                    <div class="wp_foot">
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <!--主体内容 end-->
+    <!--底部信息 start-->
+    <div class="footer">
+        <center>
+            <div class="foot_center">
+                <ul>
+                    <li><a href="#">意见反馈</a></li>
+                    <li><a href="#">收藏网站</a></li>
+                    <li><a href="#">设为首页</a></li>
+                    <li><a href="#">帮助中心</a></li>
+                </ul>
+                <div class="clear">
+                </div>
+                <p>
+                    广州地下铁道总公司&nbsp;&nbsp;版权所有</p>
+            </div>
+            <div class="clear">
+            </div>
+        </center>
+    </div>
+    <!--底部信息 end-->
+    <div style="height: 10px">
+    </div>
+    <script type="text/javascript">
+        var g = function (id) {
+            return typeof id == "string" ? document.getElementById(id) : id;
+        };
+        var menuArray = [
+	        {
+	            currentNode: null,
+	            currentDiv: null
+	        },
+            {
+                currentNode: g("tabDef4"),
+                currentDiv: g("tab4_1")
+            },
+            {
+                currentNode: g("tabDef5"),
+                currentDiv: g("tab5_1")
+            }
+        ];
+        var selectMenu = function (menuObj, divId, menuIndex) {
+            var len = menuArray.length;
+            for (var i = 0; i < len; i++) {
+                if (menuArray[i] != null && menuArray[i].currentNode != null)
+                    menuArray[i].currentNode.className = "tabDef" + (i + 3); //tabDef3,tabDef4,tabDef5
+            }
+            return function (menuObj, divId, menuIndex) {
+                if (!isNaN(menuIndex) && 0 <= parseInt(menuIndex) && parseInt(menuIndex) < len) {
+                    var tempObj = menuArray[menuIndex];
+                    if (menuObj != tempObj.currentNode) {
+                        menuObj.className = tempObj.currentNode.className;
+                        tempObj.currentNode.className = "";
+                        tempObj.currentDiv.style.display = "none";
+
+                        tempObj.currentNode = menuObj;
+                        tempObj.currentDiv = g(divId);
+                        tempObj.currentDiv.style.display = "";
+                    }
+                }
+            };
+        } ();
+
+        function SelectMenu3(MenuObj, DivId) {
+            selectMenu(MenuObj, DivId, 0);
+        }
+
+        function SelectMenu4(MenuObj, DivId) {
+            selectMenu(MenuObj, DivId, 1);
+        }
+
+        function SelectMenu5(MenuObj, DivId) {
+            selectMenu(MenuObj, DivId, 2);
+            switch (DivId) {
+                case "tab5_1":
+                case "tab5_3":
+                case "tab5_2":
+                    loadTab(DivId);
+                    break;
+                case "tab5_4":
+                    loadTab(DivId, function () {
+                        menuArray[0].currentNode = g("tabDef3");
+                        menuArray[0].currentNode.className = "tabDef3";
+                        menuArray[0].currentDiv = g("tab3_1");
+                    });
+                    break;
+            }
+        }
+
+        var justOneLoad = "";
+        function loadTab(divId, func) {
+            if (justOneLoad.indexOf(divId) == -1) {
+                var tabObj = {
+                    tab5_1: "projectManage",
+                    tab5_2: "operationMaintenance",
+                    tab5_3: "financeManage",
+                    tab5_4: "humanResource"
+                };
+                $("#" + divId).load("modules/" + tabObj[divId] + ".html", function () {
+                    if (func != null && typeof func == "function")
+                        func();
+                    justOneLoad += divId;
+                });
+            }
+        }
+
+        $(function () {
+            $("#tabDef5").mouseover();
+        });
+    </script>
+</body>
+</html>

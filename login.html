@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <title>广州地铁企业内部门户</title>
+    <link href="Themes/sso_themes/login.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="login" onkeypress="if(event.keyCode==13)btnLoginCheck();">
+    <form runat="server" id="form1">
+    <div class="container">
+        <div class="header">
+            <h1>
+                广州地铁 - SSO登录</h1>
+        </div>
+        <div class="content">
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                        </th>
+                        <td style="vertical-align: top; padding-top: 16px;">
+                            请输入您的用户名和密码登录本系统<br />
+                            <label id="lblErrorInfo" style="display: none">
+                            </label>
+                            <!--<asp:Label ID="lblErrorInfo" runat="server" Visible="false"></asp:Label>-->
+                        </td>
+                    </tr>
+                </thead>
+                <tr>
+                    <th>
+                        用户名：
+                    </th>
+                    <td>
+                        <input id="txtUserName" class="login_text" value="administrator" />
+                        <!--<asp:TextBox ID="txtUserName" runat="server" CssClass="login_text"></asp:TextBox>-->
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        密&nbsp;&nbsp;&nbsp;&nbsp;码：
+                    </th>
+                    <td>
+                        <input type="password" id="txtPassword" class="login_text" value="pass@word1" />
+                        <!--<asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="login_text"></asp:TextBox>-->
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                    </th>
+                    <td>
+                        <input type="radio" name="rdoUserType" id="rdoUserType1" value="0" checked="checked" /><label
+                            for="rdoUserType1">内部用户</label>
+                        <input type="radio" name="rdoUserType" id="rdoUserType2" value="1" /><label for="rdoUserType2">外部用户</label>
+                        <!--<asp:RadioButtonList ID="radUserType" runat="server" RepeatDirection="Horizontal" Width="192px">
+                        <asp:ListItem Text="内部用户" Value="0" Selected="True"></asp:ListItem>
+                        <asp:ListItem Text="外部用户" Value="1"></asp:ListItem>
+                        </asp:RadioButtonList>-->
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                    </th>
+                    <td>
+                        <input id="chkSetPaw" runat="server" type="checkbox" />记住用户名和密码
+                    </td>
+                </tr>
+                <tfoot>
+                    <tr>
+                        <th>
+                        </th>
+                        <td>
+                            <input id="btnLogin" type="button" class="inputbtn" onclick="btnLoginCheck();" value="登录" />
+                            <!--<asp:button id="Button1" runat="server" cssclass="inputbtn" onclick="btnLogin_Click"
+                                text="登录" />-->
+                            <a href="javascript:" class="linkbtn2" style="display: none"><span>密钥棒登录</span></a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="footer">
+            <p>
+                Copyright @ 2009 广州市地下铁道总公司 All Right Reserved
+            </p>
+        </div>
+        <div id="extraDiv1">
+            <span></span>
+        </div>
+        <div id="extraDiv2">
+            <span></span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById("btnLogin").focus();
+        };
+
+        String.prototype.trim = function () {
+            return this.replace(/^(\s|\u00A0)+|(\s|\u00A0)+$/g, "");
+        };
+
+        var btnLoginCheck = function () {
+            var txtUserName = document.getElementById("txtUserName");
+            var txtPassword = document.getElementById("txtPassword");
+            var userNameVal = txtUserName.value.trim();
+            var passwordVal = txtPassword.value.trim();
+            if (!userNameVal) {
+                alert("请输入用户名");
+                txtUserName.focus();
+                return false;
+            }
+            if (!passwordVal) {
+                alert("请输入密码");
+                txtPassword.focus();
+                return false;
+            }
+            if (userNameVal != "administrator" || passwordVal != "pass@word1") {
+                alert("用户名或密码输入有误，请重新输入");
+                txtUserName.value = "";
+                txtPassword.value = "";
+                txtUserName.focus();
+                return false;
+            }
+            location.href = 'index.html';//aspx页面就不用在此控制
+            return true;
+        };
+    </script>
+    </form>
+</body>
+</html>

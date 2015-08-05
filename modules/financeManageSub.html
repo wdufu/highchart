@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>财务管理子项</title>
+    <script type="text/javascript" src="../Scripts/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../Scripts/queryString.js"></script>
+    <script type="text/javascript" src="../Scripts/Highcharts/highcharts-2.1.4.min.js"></script>
+</head>
+<body>
+    <div id="fmSub_containerCombo" style="height: 400px;">
+    </div>
+    <script type="text/javascript">
+        var fmSub_chart;
+        function hrSub_initComboChart(titleText, categoriesData, seriesDataArray) {
+            var chartOptions = {
+                chart: {
+                    renderTo: 'fmSub_containerCombo',
+                    borderWidth: 1,
+                    borderColor: '#C6D8E0'
+                },
+                title: {
+                    text: titleText
+                },
+                subtitle: {
+                    text: '备注：（k表示千，M表示百万）',
+                    floating: true,
+                    align: 'right',
+                    verticalAlign: 'bottom',
+                    y: 5
+                },
+                xAxis: {
+                    categories: categoriesData,
+                    tickmarkPlacement: 'between'
+                },
+                yAxis: {
+                    title: {
+                        text: '金额单位：元'
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.series.name + '</b><br/>' +
+                            (this.point.name ? (this.point.name + '：' + this.y + '%（占比）') :
+                                              (this.x + '：' + this.y + '元'));
+                    }
+                },
+                series: seriesDataArray
+            };
+
+            fmSub_chart = new Highcharts.Chart(chartOptions);
+        }
+
+        $(function () {
+            var testData = [
+                {
+                    name: '营业总收入',
+                    categoriesData: ['营业收入', '利息收入', '已赚保费', '手续费及佣金收入'],
+                    data: [{
+                        type: 'column',
+                        name: '本期金额（元）',
+                        data: [600000, 100000, 100000, 200000],
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }, {
+                        type: 'column',
+                        name: '本年累计（元）',
+                        data: [6600000, 1100000, 1100000, 2200000],
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }, {
+                        type: 'pie',
+                        name: '本期金额（元）比例',
+                        size: '40%',
+                        innerSize: '20%',
+                        data: [
+							{ name: '营业收入', y: 60, color: '#4572A7' },
+							{ name: '利息收入', y: 10, color: '#AA4643' },
+							{ name: '已赚保费', y: 10, color: '#89A54E' },
+							{ name: '手续费及佣金收入', y: 20, color: '#80699B' }
+						],
+                        dataLabels: {
+                            enabled: false
+                        },
+                        center: ['80%', '20%'],
+                        showInLegend: false
+                    }, {
+                        type: 'pie',
+                        name: '本年累计（元）比例',
+                        innerSize: '45%',
+                        data: [
+							{ name: '营业收入', y: 60, color: '#4572A7' },
+							{ name: '利息收入', y: 10, color: '#AA4643' },
+							{ name: '已赚保费', y: 10, color: '#89A54E' },
+							{ name: '手续费及佣金收入', y: 20, color: '#80699B' }
+						],
+                        dataLabels: {
+                            enabled: true,
+                            color: '#000000',
+                            connectorColor: '#000000'
+                        },
+                        center: ['80%', '20%'],
+                        size: 100,
+                        showInLegend: false
+                    }]
+                },
+                {
+                    name: '营业总成本',
+                    categoriesData: ['营业成本', '利息支出', '手续费及佣金支出', '退保金', '赔付支出净额',
+                         '提取保险合同准备金净额', '保单红利支出', '分保费用', '营业税金及附加', '销售费用',
+                         '管理费用', '财务费用', '资产减值损失', '其他'],
+                    data: [{
+                        type: 'column',
+                        name: '本期金额（元）',
+                        data: [600000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000,
+                            25000, 25000, 25000, 25000],
+                        dataLabels: {
+                            enabled: false
+                        }
+                    }, {
+                        type: 'column',
+                        name: '本年累计（元）',
+                        data: [6000000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000,
+                            250000, 250000, 250000, 250000],
+                        dataLabels: {
+                            enabled: false
+                        }
+                    }, {
+                        type: 'pie',
+                        name: '本期金额（元）比例',
+                        size: '40%',
+                        innerSize: '20%',
+                        data: [
+							{ name: '营业成本', y: 75 },
+							{ name: '利息支出', y: 1.25 },
+							{ name: '手续费及佣金支出', y: 1.25 },
+							{ name: '退保金', y: 1.25 },
+                            { name: '赔付支出净额', y: 1.25 },
+							{ name: '提取保险合同准备金净额', y: 1.25 },
+							{ name: '保单红利支出', y: 1.25 },
+							{ name: '分保费用', y: 1.25 },
+                            { name: '营业税金及附加', y: 1.25 },
+							{ name: '销售费用', y: 1.25 },
+							{ name: '管理费用', y: 3.125 },
+							{ name: '财务费用', y: 3.125 },
+                            { name: '资产减值损失', y: 3.125 },
+							{ name: '其他', y: 3.125 }
+						],
+                        dataLabels: {
+                            enabled: false
+                        },
+                        center: ['80%', '20%'],
+                        showInLegend: false
+                    }, {
+                        type: 'pie',
+                        name: '本年累计（元）比例',
+                        innerSize: '45%',
+                        data: [
+							{ name: '营业成本', y: 75 },
+							{ name: '利息支出', y: 1.25 },
+							{ name: '手续费及佣金支出', y: 1.25 },
+							{ name: '退保金', y: 1.25 },
+                            { name: '赔付支出净额', y: 1.25 },
+							{ name: '提取保险合同准备金净额', y: 1.25 },
+							{ name: '保单红利支出', y: 1.25 },
+							{ name: '分保费用', y: 1.25 },
+                            { name: '营业税金及附加', y: 1.25 },
+							{ name: '销售费用', y: 1.25 },
+							{ name: '管理费用', y: 3.125 },
+							{ name: '财务费用', y: 3.125 },
+                            { name: '资产减值损失', y: 3.125 },
+							{ name: '其他', y: 3.125 }
+						],
+                        dataLabels: {
+                            enabled: false,
+                            color: '#000000',
+                            connectorColor: '#000000'
+                        },
+                        center: ['80%', '20%'],
+                        size: 150,
+                        showInLegend: false
+                    }]
+                }
+            ];
+
+            queryString.initial();
+            var index = parseInt(queryString.getValue("index"));
+            hrSub_initComboChart(testData[index].name, testData[index].categoriesData, testData[index].data);
+        });
+    </script>
+</body>
+</html>

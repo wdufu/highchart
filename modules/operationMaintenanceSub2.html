@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>运营管理总电耗子项</title>
+    <script type="text/javascript" src="../Scripts/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../Scripts/queryString.js"></script>
+    <script type="text/javascript" src="../Scripts/Highcharts/highcharts-2.1.4.min.js"></script>
+</head>
+<body>
+    <div id="omSub2_containerColumn" style="height: 400px;">
+    </div>
+    <script type="text/javascript">
+        var omSub2_chart;
+        function omSub2_initColumnChart(seriesData) {
+            var chartOptions = {
+                chart: {
+                    renderTo: 'omSub2_containerColumn',
+                    defaultSeriesType: 'column',
+                    borderWidth: 1,
+                    borderColor: '#C6D8E0'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    title: {
+                        text: '万（千瓦时）'
+                    },
+                    categories: ['总电耗'],
+                    tickmarkPlacement: 'between'
+                },
+                yAxis: {
+                    title: {
+                        text: '百分比'
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.series.name + '</b><br/>' + '电耗：' + this.y / 10000 + 
+                            '万<br/>' + this.x + '：' + this.point.stackTotal / 10000 + '万<br/>百分比：'+
+                            Highcharts.numberFormat(this.percentage,2,'.') + '%';
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'percent',
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function () {
+                                return this.y / 10000;
+                            },
+                            color: '#FFFFFF',
+                            y:15
+                        }
+                    }
+                },
+                series: seriesData
+            };
+
+            omSub2_chart = new Highcharts.Chart(chartOptions);
+        }
+
+        $(function () {
+            var testData = [
+                [
+                    {name:'广和', data:[6000000]},
+                    {name:'坑口', data:[4000000]}
+                ],
+                [
+                    { name: '瑶台2', data: [3000000] },
+                    { name: '榕景2及望岗', data: [7000000] }
+                ],
+                [
+                    { name: '河南2', data: [5000000] },
+                    { name: '金山', data: [4000000] },
+                    { name: '五山', data: [1000000] }
+                ],
+                [
+                    { name: '望岗', data: [8000000] },
+                    { name: '燕岭', data: [2000000] }
+                ],
+                [
+                    { name: '河南3', data: [4000000] },
+                    { name: '庆盛', data: [4000000] },
+                    { name: '兴业', data: [2000000] }
+                ],
+                [
+                    { name: '瑶台2', data: [5000000] },
+                    { name: '鱼珠', data: [5000000] }
+                ],
+                [
+                    { name: '河南8', data: [3000000] },
+                    { name: '榕景8', data: [7000000] }
+                ],
+                [
+                    { name: 'XX', data: [4000000] },
+                    { name: 'XX2', data: [6000000] }
+                ],
+                [
+                    { name: 'XX', data: [9000000] },
+                    { name: '海五路', data: [1000000] }
+                ]
+            ];
+
+            queryString.initial();
+            var index = parseInt(queryString.getValue("index"));
+            omSub2_initColumnChart(testData[index]);
+        });
+    </script>
+</body>
+</html>

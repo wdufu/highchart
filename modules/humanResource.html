@@ -1,0 +1,464 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>人力资源</title>
+</head>
+<body>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="49%" valign="top">
+                <div id="hr_containerBar" style="height: 242px">
+                </div>
+            </td>
+            <td width="2%" valign="top">
+                &nbsp;
+            </td>
+            <td width="49%" valign="top">
+                <div class="tabpart">
+                    <div class="tp_top">
+                        <ul>
+                            <li><a href="javascript:" onmouseover="SelectMenu3(this,'tab3_1');" id="tabDef3"
+                                class="tabDef3"><b>
+                                    <!--左边10px-->
+                                </b><span>员工学历</span> </a></li>
+                            <li><a href="javascript:" onmouseover="SelectMenu3(this,'tab3_2');"><b>
+                                <!--左边10px-->
+                            </b><span>服务年限</span> </a></li>
+                            <li><a href="javascript:" onmouseover="SelectMenu3(this,'tab3_3');"><b>
+                                <!--左边10px-->
+                            </b><span>员工职称</span> </a></li>
+                            <li><a href="javascript:" onmouseover="SelectMenu3(this,'tab3_4');"><b>
+                                <!--左边10px-->
+                            </b><span>党员比例</span> </a></li>
+                        </ul>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="tp_main">
+                        <div id="tab3_1" style="width: 325px; height: 200px">
+                        </div>
+                        <div id="tab3_2" style="width: 325px; height: 200px; display: none;">
+                        </div>
+                        <div id="tab3_3" style="width: 325px; height: 200px; display: none;">
+                        </div>
+                        <div id="tab3_4" style="width: 325px; height: 200px; display: none;">
+                        </div>
+                    </div>
+                    <div class="tp_foot">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="49%" valign="top">
+                <div id="hr_containerCombo" style="height: 250px; padding-top: 5px;">
+                </div>
+            </td>
+            <td width="2%" valign="top">
+                &nbsp;
+            </td>
+            <td width="49%" valign="top">
+                <div id="hr_containerColumn" style="width: 350px; height: 250px; padding-top: 5px;">
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        var hr_chart;
+        function hr_initPieChart(chartOptions) {
+            var chartArray = [
+                {
+                    containerId: 'tab3_1',
+                    otherOptions: {
+                        series: [{
+                            name: '员工学历',
+                            data: [
+		    					{
+		    					    name: '博士',
+		    					    population: 500,
+		    					    y: 5.0,
+		    					    sliced: true,
+		    					    selected: true
+		    					},
+		    					{
+		    					    name: '硕士',
+		    					    population: 1500,
+		    					    y: 15.0
+		    					},
+		    					{
+		    					    name: '本科',
+		    					    population: 4600,
+		    					    y: 46.0
+		    					},
+		    					{
+		    					    name: '大专',
+		    					    population: 3000,
+		    					    y: 30.0
+		    					},
+		    					{
+		    					    name: '中专及以下',
+		    					    population: 400,
+		    					    y: 4.0
+		    					}
+		    				]
+                        }]
+                    }
+                },
+                {
+                    containerId: 'tab3_2',
+                    otherOptions: {
+                        series: [{
+                            name: '服务年限',
+                            data: [
+		    					{
+		    					    name: '不满1年',
+		    					    population: 966,
+		    					    y: 9.66,
+		    					    sliced: true,
+		    					    selected: true
+		    					},
+		    					{
+		    					    name: '[1-5]年',
+		    					    population: 6034,
+		    					    y: 60.34
+		    					},
+		    					{
+		    					    name: '[5-8]年',
+		    					    population: 1600,
+		    					    y: 16.0
+		    					},
+		    					{
+		    					    name: '[8-10]年',
+		    					    population: 800,
+		    					    y: 8.0
+		    					},
+		    					{
+		    					    name: '[10-15]年',
+		    					    population: 400,
+		    					    y: 4.0
+		    					},
+		    					{
+		    					    name: '15年以上',
+		    					    population: 200,
+		    					    y: 2.0
+		    					}
+		    				]
+                        }]
+                    }
+                },
+                {
+                    containerId: 'tab3_3',
+                    otherOptions: {
+                        series: [{
+                            name: '员工职称',
+                            data: [
+		    					{
+		    					    name: '高级',
+		    					    population: 1600,
+		    					    y: 16.0,
+		    					    sliced: true,
+		    					    selected: true
+		    					},
+		    					{
+		    					    name: '中级',
+		    					    population: 2000,
+		    					    y: 20.0
+		    					},
+		    					{
+		    					    name: '初级',
+		    					    population: 6000,
+		    					    y: 60.0
+		    					},
+		    					{
+		    					    name: '无',
+		    					    population: 400,
+		    					    y: 4.0
+		    					}
+		    				]
+                        }]
+                    }
+                },
+                {
+                    containerId: 'tab3_4',
+                    otherOptions: {
+                        series: [{
+                            name: '党员比例',
+                            data: [
+		    					{
+		    					    name: '党员',
+		    					    population: 8000,
+		    					    y: 80.0,
+		    					    sliced: true,
+		    					    selected: true
+		    					},
+		    					{
+		    					    name: '非党员',
+		    					    population: 2000,
+		    					    y: 20.0
+		    					}
+		    				]
+                        }]
+                    }
+                }
+		    ];
+
+            chartOptions = {
+                chart: {
+                    renderTo: '',
+                    defaultSeriesType: 'pie',
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false
+                },
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    formatter: function () {
+                        var dataElement = chartArray[{
+                            员工学历: 0,
+                            服务年限: 1,
+                            员工职称: 2,
+                            党员比例: 3
+                        }[this.series.name]].otherOptions.series[0].data[this.point.x];
+                        return '<b>' + this.point.name + '：</b>' + dataElement.population + '人，占' + this.y + '%';
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            color: '#000',
+                            connectorColor: '#000',
+                            formatter: function () {
+                                return '<b>' + this.y + '</b> %';
+                            }
+                        },
+                        states: {
+                            hover: {
+                                brightness: 0.2
+                            }
+                        },
+                        showInLegend: true,
+                        size: '60%',
+                        center: [200, 110]
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    backgroundColor: '#FFFFFF',
+                    align: 'left',
+                    verticalAlign: 'top',
+                    x: -10,
+                    y: -10,
+                    floating: true,
+                    shadow: true
+                },
+                series: null
+            };
+
+
+            for (var i = 0, len = chartArray.length; i < len; i++) {
+                chartOptions.chart.renderTo = chartArray[i].containerId;
+                chartOptions.series = chartArray[i].otherOptions.series;
+                hr_chart = new Highcharts.Chart(chartOptions);
+            }
+        }
+
+        function hr_initColumnChart(chartOptions) {
+            hr_chart = new Highcharts.Chart(chartOptions);
+        }
+
+        function hr_initComboChart(chartOptions) {
+            chartOptions.chart.renderTo = 'hr_containerCombo';
+            chartOptions.title.text = '员工效率';
+            chartOptions.legend.enabled = true;
+            chartOptions.xAxis.tickmarkPlacement = 'on';
+            chartOptions.yAxis = [{
+                title: {
+                    text: '收益'
+                },
+                tickPixelInterval: 25
+            }, {
+                //linkedTo: 0,
+                tickPixelInterval: 50,
+                gridLineWidth: 1,
+                opposite: true,
+                title: {
+                    text: '成本收益',
+                    style: {
+                        color: '#AA4744'
+                    }
+                },
+                labels: {
+                    style: {
+                        color: '#AA4744'
+                    }
+                }
+            }],
+        chartOptions.tooltip.formatter = function () {
+            return '<b>' + this.x + '年：</b>' + this.y;
+        };
+            chartOptions.series = [{
+                type: 'column',
+                name: '每一员工收益',
+                data: [1.1, 0.7, 0.8, 0.9, 0.6],
+                dataLabels: {
+                    enabled: true
+                }
+            }, {
+                type: 'spline',
+                name: '每一员工成本收益',
+                data: [2.08, 1.44, 3.31, 1.34, 2.1],
+                dataLabels: {
+                    enabled: true,
+                    color: 'red'
+                },
+                yAxis: 1
+            }];
+            hr_chart = new Highcharts.Chart(chartOptions);
+        }
+
+        function hr_initBarChart(chartOptions) {
+            chartOptions = {
+                chart: {
+                    renderTo: 'hr_containerBar',
+                    defaultSeriesType: 'bar',
+                    borderWidth: 1,
+                    borderColor: '#C6D8E0',
+                    marginRight: 25
+                },
+                title: {
+                    text: '员工职级'
+                },
+                xAxis: {
+                    categories: ['总公司正职', '总公司副职', '总部正职', '总部副职',
+                    '部门正职', '部门副职', '业务经理级', '业务主办级', '业务助理级',
+                    '被免去职务暂未聘人员'],
+                    title: {
+                        text: ''
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: ''
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        var seriesName = this.series.name;
+                        return '<b>' + seriesName + '：</b>' + this.y + ' 人<br/>'
+                        + (seriesName == '编制数' ? '<b>' + seriesName + '/' + chartOptions.series[1].name + '：</b>' + hr_chart.get(this.point.id).percent + '%（占比）' : '');
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: false
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: 0,
+                    y: 0,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: '#FFFFFF',
+                    shadow: true
+                },
+                series: [{
+                    name: '编制数',
+                    data: [
+                    { id: 'hr_per1', name: '', y: 480, percent: 96 },
+                    { id: 'hr_per2', name: '', y: 200, percent: 100 },
+                    { id: 'hr_per3', name: '', y: 380, percent: 76 },
+                    { id: 'hr_per4', name: '', y: 330, percent: 110 },
+                    { id: 'hr_per5', name: '', y: 987, percent: 98.7 },
+                    { id: 'hr_per6', name: '', y: 130, percent: 100 },
+                    { id: 'hr_per7', name: '', y: 478, percent: 95.6 },
+                    { id: 'hr_per8', name: '', y: 490, percent: 100 },
+                    { id: 'hr_per9', name: '', y: 888, percent: 88.8 },
+                    { id: 'hr_per10', name: '', y: 870, percent: 100 }
+                ]
+                }, {
+                    name: '人数',
+                    data: [500, 200, 500, 300, 1000, 130, 500, 490, 1000, 870]
+                }]
+            };
+
+            hr_chart = new Highcharts.Chart(chartOptions);
+        }
+
+        $(document).ready(function () {
+            var chartOptions = {
+                chart: {
+                    renderTo: 'hr_containerColumn',
+                    defaultSeriesType: 'column',
+                    borderWidth: 1,
+                    borderColor: '#C6D8E0'
+                },
+                title: {
+                    text: '员工薪酬'
+                },
+                xAxis: {
+                    title: {
+                        text: ''
+                    },
+                    categories: [2005, 2006, 2007, 2008, 2009, 2010],
+                    tickmarkPlacement: 'between'
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '百万'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>'+this.x + '年：</b>' + this.y + '百万';
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: '员工薪酬',
+                    data: [1300, 1200, 1000, 1300, 1500],
+                    dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        x: -3,
+                        y: 10,
+                        formatter: function () {
+                            return this.y;
+                        },
+                        style: {
+                            font: 'normal 13px Verdana, sans-serif'
+                        }
+                    }
+                }]
+            };
+
+            hr_initPieChart(chartOptions);
+            hr_initColumnChart(chartOptions);
+            hr_initComboChart(chartOptions);
+            hr_initBarChart(chartOptions);
+        });
+    </script>
+</body>
+</html>

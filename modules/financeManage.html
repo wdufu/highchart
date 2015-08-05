@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>财务管理</title>
+    <style type="text/css">
+        #fm_table_profit td, #fm_table_profit th, #fm_table_debt td, #fm_table_debt th
+        {
+            text-align: center;
+            border-bottom: 1px dotted #dedede;
+            border-left: 1px dotted #dedede;
+        }
+        #fm_table_profit .thTitle, #fm_table_debt .thTitle
+        {
+            background: #F4F6F8;
+            color: #444;
+            padding: 8px 2px;
+            text-align: right;
+        }
+        #fm_table_profit .thColumn, #fm_table_debt .thColumn
+        {
+            background: #F4F6F8;
+            color: #444;
+            padding: 8px 2px;
+        }
+        #fm_table_profit .canClick, #fm_table_debt .canClick
+        {
+            cursor: pointer;
+            color: Blue;
+        }
+        .divShowTitle
+        {
+            text-indent: 2em;
+            line-height: 20px;
+        }
+        #fm_table_profit caption, #fm_table_debt caption
+        {
+            height: 20px;
+            background: url(Themes/Default/bg_main.gif) no-repeat 0 -103px;
+            font-size: 14px;
+            font-weight: bold;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="49%" valign="top" style="border: #C6D8E0 1px solid">
+                <table id="fm_table_profit" width="100%" cellspacing="0" cellpadding="3">
+                    <caption>
+                        2011年02月28日--利润表</caption>
+                    <thead>
+                        <tr>
+                            <th class="thColumn">
+                                合计
+                            </th>
+                            <th class="thColumn">
+                                本期金额（元）
+                            </th>
+                            <th class="thColumn">
+                                本年累计（元）
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="width: 33%;" class="thTitle">
+                                营业总收入：
+                            </th>
+                            <td>
+                                <span id="Span0" class="canClick">1000000</span>
+                            </td>
+                            <td>
+                                <span id="Span1" class="canClick">11000000</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="thTitle">
+                                营业总成本：
+                            </th>
+                            <td>
+                                <span id="Span2" class="canClick">800000</span>
+                            </td>
+                            <td>
+                                <span id="Span3" class="canClick">8000000</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="thTitle">
+                                营业利润：
+                            </th>
+                            <td>
+                                <span id="Span4">200000</span>
+                            </td>
+                            <td>
+                                <span id="Span5">3000000</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="thTitle">
+                                利润总额：
+                            </th>
+                            <td>
+                                <span id="Span6">1000000</span>
+                            </td>
+                            <td>
+                                <span id="Span7">11000000</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="thTitle">
+                                净利润：
+                            </th>
+                            <td>
+                                <span id="Span8">1000000</span>
+                            </td>
+                            <td>
+                                <span id="Span9">11000000</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td width="2%" valign="top">
+                &nbsp;
+            </td>
+            <td width="49%" valign="top">
+                <div id="fm_containerColumn1" style="width: 350px; height: 202px">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" style="height: 5px; visibility: hidden">
+            </td>
+        </tr>
+        <tr>
+            <td width="49%" valign="top" style="border: #C6D8E0 1px solid">
+                <table id="fm_table_debt" width="100%" cellspacing="0" cellpadding="3">
+                    <caption>
+                        2011年02月28日--资产负债表</caption>
+                    <thead>
+                        <tr>
+                            <th class="thColumn">
+                                合计
+                            </th>
+                            <th class="thColumn">
+                                期末余额（元）
+                            </th>
+                            <th class="thColumn">
+                                年初余额（元）
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="width: 33%;" class="thTitle">
+                                流动资产：
+                            </th>
+                            <td>
+                                <span id="Span10">100000</span>
+                            </td>
+                            <td>
+                                <span id="Span11">100000</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="thTitle">
+                                非流动资产：
+                            </th>
+                            <td>
+                                <span id="Span12">100000</span>
+                            </td>
+                            <td>
+                                <span id="Span13">100000</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="thTitle">
+                                资产：
+                            </th>
+                            <td>
+                                <span id="Span14">100000</span>
+                            </td>
+                            <td>
+                                <span id="Span15">100000</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="thTitle">
+                                流动负债：
+                            </th>
+                            <td>
+                                <span id="Span16">100000</span>
+                            </td>
+                            <td>
+                                <span id="Span17">100000</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="thTitle">
+                                非流动负债：
+                            </th>
+                            <td>
+                                <span id="Span18">100000</span>
+                            </td>
+                            <td>
+                                <span id="Span19">100000</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="thTitle">
+                                负债：
+                            </th>
+                            <td>
+                                <span id="Span20">100000</span>
+                            </td>
+                            <td>
+                                <span id="Span21">100000</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="thTitle">
+                                所有者权益：
+                            </th>
+                            <td>
+                                <span id="Span22">100000</span>
+                            </td>
+                            <td>
+                                <span id="Span23">100000</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="thTitle">
+                                负债及所有者权益：
+                            </th>
+                            <td>
+                                <span id="Span24">100000</span>
+                            </td>
+                            <td>
+                                <span id="Span25">100000</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td width="2%" valign="top">
+                &nbsp;
+            </td>
+            <td width="49%" valign="top">
+                <div id="fm_containerColumn2" style="width: 350px; height: 290px">
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        Highcharts.visualize = function (table, chartOptions) {
+            chartOptions.xAxis.categories = [];
+            $('tbody th', table).each(function (i) {
+                chartOptions.xAxis.categories.push(this.innerHTML);
+            });
+
+            chartOptions.series = [];
+            $('tr', table).each(function (i) {
+                var tr = this;
+                $('th, td>span', tr).each(function (j) {
+                    if (j > 0) {
+                        if (i == 0) {
+                            chartOptions.series[j - 1] = {
+                                name: this.innerHTML,
+                                data: []
+                            };
+                        } else {
+                            chartOptions.series[j - 1].data.push(parseFloat(this.innerHTML));
+                        }
+                    }
+                });
+            });
+
+            var chart = new Highcharts.Chart(chartOptions);
+        }
+
+        function fm_initColumnChart() {
+            var chartOptions = {
+                chart: {
+                    renderTo: 'fm_containerColumn1',
+                    defaultSeriesType: 'column',
+                    borderWidth: 1,
+                    borderColor: '#C6D8E0',
+                    marginTop: 20,
+                    marginBottom: 90
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: '备注：（k表示千，M表示百万）',
+                    floating: true,
+                    align: 'right',
+                    verticalAlign: 'bottom',
+                    y: 5
+                },
+                xAxis: {
+                    labels: {
+                        formatter: function () {
+                            return this.value.replace('：', '');
+                        }
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: '金额单位：元'
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    backgroundColor: '#FFFFFF',
+                    align: 'left',
+                    verticalAlign: 'bottom',
+                    x: 0,
+                    y: 5,
+                    floating: true,
+                    shadow: true
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.series.name + '</b><br/>' + this.x + this.y + '元';
+                    }
+                }
+            };
+            Highcharts.visualize($('#fm_table_profit').get(0), chartOptions);
+
+            chartOptions.chart.renderTo = 'fm_containerColumn2';
+            chartOptions.chart.marginBottom = 140;
+            Highcharts.visualize($('#fm_table_debt').get(0), chartOptions);
+        }
+
+        function initSpan() {
+            $('#fm_table_profit span.canClick')
+                .bind('mouseover', function () {
+                    $(this).css('color', 'red');
+                })
+                .bind('mouseout', function () {
+                    $(this).css('color', 'blue');
+                })
+                .each(function (index) {
+                    $(this).click(function (e) {
+                        hs.htmlExpand(this, {
+                            headingText: $(this).parents('table').children('caption').html(),
+                            width: 800,
+                            align: 'center',
+                            outlineType: 'rounded-white',
+                            wrapperClassName: 'draggable-header',
+                            objectType: 'iframe',
+                            src:'modules/financeManageSub.html?index=' + parseInt(index/2)
+                        });
+                    });
+                });
+        }
+
+        $(function () {
+            initSpan();
+            fm_initColumnChart();
+        });
+    </script>
+</body>
+</html>

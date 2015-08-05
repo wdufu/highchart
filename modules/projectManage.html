@@ -1,0 +1,670 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>工程建设</title>
+    <style type="text/css">
+        #pm_table_info td
+        {
+            border-bottom: 1px dotted #dedede;
+        }
+        #pm_table_info .thTitle
+        {
+            background: #f1f1f1;
+            color: #444;
+            padding: 8px 2px;
+            text-align: right;
+        }
+        #pm_table_info .description
+        {
+            cursor: pointer;
+            color: Blue;
+        }
+        .divShowTitle
+        {
+            text-indent: 2em;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="49%" valign="top" style="border: #C6D8E0 1px solid">
+                <table id="pm_table_info" width="100%" cellspacing="0" cellpadding="3">
+                    <tr>
+                        <th style="width: 30%;" class="thTitle">
+                            项目名称：
+                        </th>
+                        <td>
+                            <select id="ddlProjectName">
+                                <option value="广州市轨道交通九号线工程">广州市轨道交通九号线工程</option>
+                                <option value="广州市轨道交通三号线北延段工程">广州市轨道交通三号线北延段工程</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="thTitle">
+                            计划工程师：
+                        </th>
+                        <td>
+                            <span id="txtPlanEngineer">&nbsp;</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="thTitle">
+                            所属建设线路：
+                        </th>
+                        <td>
+                            <span id="txtBuildLine">&nbsp;</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="thTitle">
+                            土建工点开工：
+                        </th>
+                        <td>
+                            <span id="txtBuildStart">&nbsp;</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="thTitle">
+                            开通目标：
+                        </th>
+                        <td>
+                            <span id="txtBuildEnd">&nbsp;</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="thTitle">
+                            项目描述：
+                        </th>
+                        <td title="点击显示详细描述">
+                            <span id="txtProjectDescription" class="description">&nbsp;</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="thTitle">
+                            项目总体进度：
+                        </th>
+                        <td>
+                            <div id="txtProjectTotalProgress" style='background: url(images/progress1.gif) repeat-x;
+                                width: 0%; padding: 3px 0;'>
+                                <font color='black'><b>&nbsp;</b></font>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="thTitle">
+                            选择专业：
+                        </th>
+                        <td>
+                            <select id="ddlProfession">
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td width="2%" valign="top">
+                &nbsp;
+            </td>
+            <td width="49%" valign="top">
+                <div id="pm_containerPie" style="height: 242px">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="49%" valign="top">
+                <div id="pm_containerColumn1" style="height: 250px; padding-top: 5px;">
+                </div>
+            </td>
+            <td width="2%" valign="top">
+                &nbsp;
+            </td>
+            <td width="49%" valign="top">
+                <div id="pm_containerColumn2" style="width: 350px; height: 250px; padding-top: 5px;">
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript" src="Scripts\json2.js"></script>
+    <script type="text/javascript">
+        var pm_chart;
+        function pm_initPieChart(seriesData) {
+            var chartOptions = {
+                chart: {
+                    renderTo: 'pm_containerPie',
+                    defaultSeriesType: 'pie',
+                    borderWidth: 1,
+                    borderColor: '#C6D8E0'
+                },
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.point.name + '：</b>' + this.y + ' %';
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            color: '#000',
+                            connectorColor: '#000',
+
+                            formatter: function () {
+                                return '<b>' + this.point.name + '：</b>' + this.y + ' %';
+                            }
+                        },
+                        states: {
+                            hover: {
+                                brightness: 0.2
+                            }
+                        },
+                        showInLegend: true,
+                        size: '60%',
+                        center: [150, 110]
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    backgroundColor: '#FFFFFF',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: 0,
+                    y: 0,
+                    floating: true,
+                    shadow: true
+                },
+                series: [{
+                    name: '工程进度',
+                    data: null
+                }]
+            };
+            chartOptions.series[0].data = seriesData;
+            pm_chart = new Highcharts.Chart(chartOptions);
+        }
+
+        function pm_initColumnChart(mainTitle, mainYear, seriesDataArray) {
+            var chartOptions = {
+                chart: {
+                    renderTo: 'pm_containerColumn1',
+                    defaultSeriesType: 'column',
+                    borderWidth: 1,
+                    borderColor: '#C6D8E0'
+                },
+                title: {
+                    text: '广州市轨道交通' + mainTitle + mainYear + '年投资视图'
+                },
+                xAxis: {
+                    title: {
+                        text: ''
+                    },
+                    categories: ['年度', '固定资产', '全面预算'],
+                    tickmarkPlacement: 'between'
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '万'
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value / 10000;
+                        }
+                    }
+                },
+                legend: {
+                    enabled: true
+                },
+                tooltip: {
+                    formatter: function () {
+                        var seriesName = this.series.name;
+                        return '<b>' + this.x + '投资' + seriesName + '：</b>' + this.y / 10000 + '万<br/>'
+                            + (seriesName == '完成' ? '<b>' + seriesName + '：</b>' + chartOptions.series[1].data[this.point.x].percent + '%（占比）' : ''); //pm_chart.get(this.point.id) 在column类型不可用
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: '计划',
+                    data: null,
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function () {
+                            return this.y / 10000;
+                        }
+                    }
+                }, {
+                    name: '完成',
+                    data: null,
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function () {
+                            return this.y / 10000;
+                        }
+                    }
+                }]
+            };
+            chartOptions.series[0].data = seriesDataArray[0];
+            chartOptions.series[1].data = seriesDataArray[1];
+            pm_chart = new Highcharts.Chart(chartOptions);
+
+            chartOptions = {
+                chart: {
+                    renderTo: 'pm_containerColumn2',
+                    defaultSeriesType: 'column',
+                    borderWidth: 1,
+                    borderColor: '#C6D8E0'
+                },
+                title: {
+                    text: '广州市轨道交通' + mainTitle + mainYear + '年资金视图'
+                },
+                xAxis: {
+                    title: {
+                        text: ''
+                    },
+                    categories: ['年度', '固定资产', '全面预算'],
+                    tickmarkPlacement: 'between'
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '万'
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value / 10000;
+                        }
+                    }
+                },
+                legend: {
+                    enabled: true
+                },
+                tooltip: {
+                    formatter: function () {
+                        var seriesName = this.series.name;
+                        return '<b>' + this.x + '资金' + seriesName + '：</b>' + this.y / 10000 + '万<br/>'
+                            + (seriesName == '完成' ? '<b>' + seriesName + '：</b>' + chartOptions.series[1].data[this.point.x].percent + '%（占比）' : ''); //pm_chart.get(this.point.id) 在column类型不可用
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: '计划',
+                    data: null,
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function () {
+                            return this.y / 10000;
+                        }
+                    }
+                }, {
+                    name: '完成',
+                    data: null,
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function () {
+                            return this.y / 10000;
+                        }
+                    }
+                }]
+            };
+            chartOptions.series[0].data = seriesDataArray[2];
+            chartOptions.series[1].data = seriesDataArray[3];
+            pm_chart = new Highcharts.Chart(chartOptions);
+        }
+
+        function initProfession(professionArray) {
+            var ddlProfession = $('#ddlProfession').get(0);
+            ddlProfession.innerHTML = '';
+            for (var i = 0, len = professionArray.length; i < len; i++)
+                ddlProfession.options.add(new Option(professionArray[i], i));
+        }
+
+        $(document).ready(function () {
+            /*
+            var json = '{ Name: "Name1", "Age": "27" }';
+            json = eval("(" + json + ")");
+            alert(json.Name);
+
+            var text = JSON.stringify(json);
+            alert(text);
+            json = JSON.parse(text);
+            alert(json.Name);
+
+            json = "{ \"Name\": \"Name1\", \"Age\": \"27\",\"Time\":\"2011-05-24 14:57\" }";
+            //eval('json = ' + json);
+            json = JSON.parse(json);
+            alert(json.Time);
+            */
+
+            var testData = [
+                {
+                    info: {
+                        planEngineer: '周振凌',
+                        buildLine: '广州市轨道交通九号线',
+                        buildStart: '2009年09月28日',
+                        buildEnd: '2014年12月31日',
+                        projectDescription: '九号线以花都汽车城西侧飞鹅岭站为起点，终点为高增站，在高增站与三号线北延线高增站地下岛式平行换乘（远期贯通）。线路呈东西走向，全长20.1公里，均为地下线。全线共设9座车站（飞鹅岭、花都汽车城、广州北站、花城路、花果山公园、花都广场、马鞍山公园、清布站和高增站），均为地下车站，其中广州北站与武广、京广、广清线换乘，高增站与三号线北延线换乘。最大站间距5.2公里，最小站间距1公里，平均间距2.1米。风神大道与平步大道交叉路口处设民主车辆段一座，控制中心设在车辆段内。主变电站设两座，民主主变电站设在民主车辆段内，白蟮塘主变电站设在106国道与迎宾大道交叉路口东北侧处。全线初、近、远期均采用六辆B型车编组，列车最高运行速度120公里/小时，14列车具备上线条件，行车间隔5分钟。九号线初期独立运营，近、远期待三号线支线（天河客运站至体育西路段）拆解后，利用三号线北延段高增站预留的道岔出岔并接入九号线，作为三号线的支线贯通运营。',
+                        projectTotalProgress: 9
+                    },
+                    pie: {
+                        dataProfession: ['土建工程', '车辆段/停车场工程', '轨道工程', '车站设备安装及装修工程', '系统工程', '车辆'],
+                        data: [
+                            [
+							    {
+							        name: '未开始',
+							        y: 85,
+							        sliced: true,
+							        selected: true
+							    },
+							    {
+							        name: '延期',
+							        y: 0
+							    },
+							    {
+							        name: '已完成',
+							        y: 0
+							    },
+							    {
+							        name: '进行中',
+							        y: 15
+							    }
+                            ],
+                            [
+							    {
+							        name: '未开始',
+							        y: 100,
+							        sliced: true,
+							        selected: true
+							    },
+							    {
+							        name: '延期',
+							        y: 0
+							    },
+							    {
+							        name: '已完成',
+							        y: 0
+							    },
+							    {
+							        name: '进行中',
+							        y: 0
+							    }
+                            ],
+                            [
+							    {
+							        name: '未开始',
+							        y: 100,
+							        sliced: true,
+							        selected: true
+							    },
+							    {
+							        name: '延期',
+							        y: 0
+							    },
+							    {
+							        name: '已完成',
+							        y: 0
+							    },
+							    {
+							        name: '进行中',
+							        y: 0
+							    }
+                            ],
+                            [
+							    {
+							        name: '未开始',
+							        y: 100,
+							        sliced: true,
+							        selected: true
+							    },
+							    {
+							        name: '延期',
+							        y: 0
+							    },
+							    {
+							        name: '已完成',
+							        y: 0
+							    },
+							    {
+							        name: '进行中',
+							        y: 0
+							    }
+                            ],
+                            [
+							    {
+							        name: '未开始',
+							        y: 100,
+							        sliced: true,
+							        selected: true
+							    },
+							    {
+							        name: '延期',
+							        y: 0
+							    },
+							    {
+							        name: '已完成',
+							        y: 0
+							    },
+							    {
+							        name: '进行中',
+							        y: 0
+							    }
+                            ],
+                            [
+							    {
+							        name: '未开始',
+							        y: 100,
+							        sliced: true,
+							        selected: true
+							    },
+							    {
+							        name: '延期',
+							        y: 0
+							    },
+							    {
+							        name: '已完成',
+							        y: 0
+							    },
+							    {
+							        name: '进行中',
+							        y: 0
+							    }
+                            ]
+					    ]
+                    },
+                    column: {
+                        mainTitle: '九号线',
+                        mainYear: '2011',
+                        data: [
+                            [1052020000, 786680000, 826510000],
+                            [
+                                { y: 180571800, percent: 17.16 },
+                                { y: 180571800, percent: 22.95 },
+                                { y: 180571800, percent: 21.85 }
+                            ],
+                            [1100340000, 1032530000, 958280000],
+                            [
+                                { y: 135648000, percent: 12.33 },
+                                { y: 135648000, percent: 13.14 },
+                                { y: 135648000, percent: 14.16 }
+                            ]
+                        ]
+                    }
+                },
+                {
+                    info: {
+                        planEngineer: '周振凌',
+                        buildLine: '广州市轨道交通三号线北延段',
+                        buildStart: '2007年03月20日',
+                        buildEnd: '2010年10月30日',
+                        projectDescription: '三号线北延段南起广州东站，北至新机场北站，全长30.9公里，共设13座车站（从南至北依次为广州东、燕塘、梅花园、南方医院、同和、永泰、白云大道北、嘉禾、龙归、人和、高增、新机场南和新机场北站），均为地下车站，平均站间距为2.6公里，最大站间距为6.29公里，最小站间距为0.95公里。有3座车站（燕塘、嘉禾和高增站）与其它轨道交通线换乘，其中试验段1.7公里（含新机场南站）土建工程已与机场航站楼同步建成，需新建线路为29.1公里，包括10座车站和11个区间，工程概算103.22亿元。车辆均采用B型车，最高时速120公里。设车辆段1座，与二号线嘉禾车辆段合建，设望岗和燕岭主变电站2座，分别位于嘉禾车辆段内和燕塘站附近。',
+                        projectTotalProgress: 100
+                    },
+                    pie: {
+                        dataProfession: ['土建工程', '轨道工程', '车站设备安装及装修工程', '系统工程'],
+                        data: [
+                            [
+							    {
+							        name: '未开始',
+							        y: 0,
+							        sliced: true,
+							        selected: true
+							    },
+							    {
+							        name: '延期',
+							        y: 0
+							    },
+							    {
+							        name: '已完成',
+							        y: 100
+							    },
+							    {
+							        name: '进行中',
+							        y: 0
+							    }
+                            ],
+                            [
+							    {
+							        name: '未开始',
+							        y: 0,
+							        sliced: true,
+							        selected: true
+							    },
+							    {
+							        name: '延期',
+							        y: 0
+							    },
+							    {
+							        name: '已完成',
+							        y: 100
+							    },
+							    {
+							        name: '进行中',
+							        y: 0
+							    }
+                            ],
+                            [
+							    {
+							        name: '未开始',
+							        y: 0,
+							        sliced: true,
+							        selected: true
+							    },
+							    {
+							        name: '延期',
+							        y: 0
+							    },
+							    {
+							        name: '已完成',
+							        y: 100
+							    },
+							    {
+							        name: '进行中',
+							        y: 0
+							    }
+                            ],
+                            [
+							    {
+							        name: '未开始',
+							        y: 60,
+							        sliced: true,
+							        selected: true
+							    },
+							    {
+							        name: '延期',
+							        y: 0
+							    },
+							    {
+							        name: '已完成',
+							        y: 40
+							    },
+							    {
+							        name: '进行中',
+							        y: 0
+							    }
+                            ]
+					    ]
+                    },
+                    column: {
+                        mainTitle: '三号线北延段',
+                        mainYear: '2011',
+                        data: [
+                            [67700000, 59660000, 67700000],
+                            [
+                                { y: 180571800, percent: 266.72 },
+                                { y: 180571800, percent: 302.67 },
+                                { y: 180571800, percent: 266.72 }
+                            ],
+                            [266150000, 187300000, 264510000],
+                            [
+                                { y: 135648000, percent: 50.97 },
+                                { y: 135648000, percent: 72.42 },
+                                { y: 135648000, percent: 51.28 }
+                            ]
+                        ]
+                    }
+                }
+            ];
+
+            $('#ddlProjectName').change(function () {
+                var that = this;
+                var index = that.selectedIndex;
+                var infoObj = testData[index].info;
+                var pieObj = testData[index].pie;
+                var columnObj = testData[index].column;
+                $('#txtPlanEngineer').html(infoObj.planEngineer);
+                $('#txtBuildLine').html(infoObj.buildLine);
+                $('#txtBuildStart').html(infoObj.buildStart);
+                $('#txtBuildEnd').html(infoObj.buildEnd);
+                $('#txtProjectDescription').html(infoObj.projectDescription.length > 12 ?
+                                                 infoObj.projectDescription.substr(0, 12) + '...' : infoObj.projectDescription)
+                                           .unbind('mouseover mouseout click')
+                                           .bind('mouseover', function () {
+                                               $(this).css('color', 'red');
+                                           })
+                                           .bind('mouseout', function () {
+                                               $(this).css('color', 'blue');
+                                           })
+                                           .bind('click', function (e) {
+                                               if ($('.highslide-heading').length != 0) {
+                                                   $('.highslide-heading').eq(0).html(that.value);
+                                                   $('.divShowTitle:eq(0)').html(infoObj.projectDescription);
+                                               }
+                                               hs.htmlExpand(this, {
+                                                   pageOrigin: {
+                                                       x: e.pageX + 200,
+                                                       y: e.pageY
+                                                   },
+                                                   headingText: that.value,
+                                                   maincontentText: '<div class="divShowTitle">' + infoObj.projectDescription + '</div>',
+                                                   width: 400
+                                               });
+                                           });
+                $('#txtProjectTotalProgress').css('width', infoObj.projectTotalProgress + '%')
+                                             .find('b').html(infoObj.projectTotalProgress + '%');
+
+                initProfession(pieObj.dataProfession);
+                pm_initPieChart(pieObj.data[0]);
+                pm_initColumnChart(columnObj.mainTitle, columnObj.mainYear, columnObj.data);
+            }).change();
+
+            $('#ddlProfession').change(function () {
+                pm_initPieChart(testData[$('#ddlProjectName')[0].selectedIndex].pie.data[this.value]);
+            });
+        });
+    </script>
+</body>
+</html>
