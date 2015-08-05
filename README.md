@@ -3,3 +3,6 @@
 官方地址：http://www.hcharts.cn/
 
 本项目主要是把highchart整合到具体项目开发中，让你很快上手，各种图标，各种样式在不同情况下的具体使用方法，复制一下就OK
+
+效果图：
+https://github.com/holdon521/highchart/blob/master/images/OA1.png
